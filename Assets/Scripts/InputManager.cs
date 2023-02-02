@@ -4,6 +4,8 @@ using NaughtyAttributes;
 
 public class InputManager : MonoBehaviour
 {
+	[SerializeField] LayerMask floorMask;
+	[SerializeField] float buffer = 0;
 	[SerializeField] KeyCode shootKey = KeyCode.Mouse0;
 	[SerializeField] KeyCode ability1Key = KeyCode.Q;
 	[SerializeField] KeyCode ability2Key = KeyCode.E;
@@ -11,37 +13,51 @@ public class InputManager : MonoBehaviour
 	[SerializeField] KeyCode ability4Key = KeyCode.F;
 
 	public Vector2 MoveValue => new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+	public Vector2 MouseMovementValue => new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+	public Vector3 MousePositionOnFloor
+	{
+		get
+		{
+			if(Physics.Raycast(camera.transform.position, camera.transform.forward,  out RaycastHit hitInfo, Mathf.Infinity, layerMask: floorMask))
+			{
+				return hitInfo.point;
+			}
+			
+			return default;
+		}
+	}
+	public Vector3 LookDirection => transform.position - MousePositionOnFloor;
+
 	[Foldout("Actions")] public UnityEvent onShoot;
-	[Foldout("Actions")] public UnityEvent onAbility1Used;
-	[Foldout("Actions")] public UnityEvent onAbility2Used;
-	[Foldout("Actions")] public UnityEvent onAbility3Used;
-	[Foldout("Actions")] public UnityEvent onAbility4Used;
+	[Foldout("Actions")] public UnityEvent<int> onSkillUsed;
+	new Camera camera;
+	void Awake() => camera = Camera.main;
 
 	void Update()
 	{
 		if(Input.GetKeyDown(shootKey))
 		{
-			onAbility1Used?.Invoke();
+			onShoot?.Invoke();
 		}
 		
 		if(Input.GetKeyDown(ability1Key))
 		{
-			onAbility1Used?.Invoke();
+			onSkillUsed?.Invoke(0);
 		}
 
 		if(Input.GetKeyDown(ability2Key))
 		{
-			onAbility2Used?.Invoke();
+			onSkillUsed?.Invoke(1);
 		}
 
 		if(Input.GetKeyDown(ability3Key))
 		{
-			onAbility3Used?.Invoke();
+			onSkillUsed?.Invoke(2);
 		}
 
 		if(Input.GetKeyDown(ability4Key))
 		{
-			onAbility4Used?.Invoke();
+			onSkillUsed?.Invoke(3);
 		}
 	}
 }

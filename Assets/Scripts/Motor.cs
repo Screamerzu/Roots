@@ -28,13 +28,13 @@ public class Motor : MonoBehaviour
 		rigidbody.AddForce(Vector3.up * jumpForce);
 	}
 
-	public void StartMoving(Vector2 direction)
+	public void Move(Vector2 direction)
 	{
 		rigidbody.velocity = new Vector3(direction.x, 0, direction.y).normalized * speed;
 	}
 
-	public void StopMoving(Vector2 direction)
+	public void Rotate(Vector2 forward)
 	{
-		rigidbody.velocity = Vector3.zero;
+		transform.forward = forward;
 	}
 }

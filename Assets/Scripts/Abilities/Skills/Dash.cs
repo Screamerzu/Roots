@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Dash : Skill
 {
-	public override OnFinishedCasting StartCasting(Vector3 direction, IElementHolder instigator)
+	const float DASH_LENGTH = 2f;
+	public override void StartCasting(Vector3 direction, IElementHolder instigator)
 	{
-		throw new System.NotImplementedException();
+		Player player = instigator as Player;
+		player.transform.position += direction.normalized * DASH_LENGTH;
+		onFinishedCasting?.Invoke(this);
 	}
 }

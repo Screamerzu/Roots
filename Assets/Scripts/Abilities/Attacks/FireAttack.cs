@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FireAttack : Attack
 {
-	public override OnFinishedCasting StartCasting(Vector3 direction, IElementHolder instigator)
+	public override void StartCasting(Vector3 direction, IElementHolder instigator)
 	{
-		throw new System.NotImplementedException();
+		
 	}
 }

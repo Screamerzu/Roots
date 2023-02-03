@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Ability
 {
-    public delegate void OnFinishedCasting();
-	protected OnFinishedCasting onFinishedCasting;
-	public abstract OnFinishedCasting StartCasting(Vector3 direction, IElementHolder instigator);
+	public UnityEvent<Ability> onFinishedCasting = new();
+	public abstract void StartCasting(Vector3 direction, IElementHolder instigator);
 }

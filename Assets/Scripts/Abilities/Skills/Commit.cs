@@ -10,20 +10,20 @@ public class Commit : Skill
 	Player player;
 	Element lockedElement;
 
-	public override OnFinishedCasting StartCasting(Vector3 direction, IElementHolder instigator)
+	public override void StartCasting(Vector3 direction, IElementHolder instigator)
 	{
 		player = instigator as Player;
 		lockedElement = player.CurrentElementHeld;
-		player.GetComponent<PlayerController>().AbilityCaster.onFinishedCasting += ChangeElement;
+		player.OnElementHeldChanged.AddListener(ChangeElement);
 		player.StartCoroutine(LockElement());
-		return onFinishedCasting;
+		onFinishedCasting?.Invoke(this);
 	}
 
-	void ChangeElement() => (player as IElementHolder).Regen(lockedElement);
+	void ChangeElement(Element element) => (player as IElementHolder).Regen(lockedElement);
 
 	IEnumerator LockElement()
 	{
 		yield return new WaitForSeconds(DURATION);
-		player.GetComponent<PlayerController>().AbilityCaster.onFinishedCasting -= ChangeElement;
+		player.OnElementHeldChanged.RemoveListener(ChangeElement);
 	}
 }

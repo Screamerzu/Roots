@@ -14,22 +14,24 @@ public class InputManager : MonoBehaviour
 
 	public Vector2 MoveValue => new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 	public Vector2 MouseMovementValue => new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-	public Vector3 MousePositionOnFloor
+	public Vector3 MousePosition => Input.mousePosition;
+	public Vector3 MousePositionLevelWithPlayer
 	{
 		get
 		{
-			if(Physics.Raycast(camera.transform.position, camera.transform.forward,  out RaycastHit hitInfo, Mathf.Infinity, layerMask: floorMask))
+			Ray ray = camera.ScreenPointToRay(MousePosition);
+			if(Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, layerMask: floorMask))
 			{
-				return hitInfo.point;
+				return new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
 			}
-			
+
 			return default;
 		}
 	}
-	public Vector3 LookDirection => transform.position - MousePositionOnFloor;
+	public Vector3 LookDirection => MousePositionLevelWithPlayer - transform.position;
 
-	[Foldout("Actions")] public UnityEvent onShoot;
-	[Foldout("Actions")] public UnityEvent<int> onSkillUsed;
+	[Foldout("Actions")] public UnityEvent onShoot = new();
+	[Foldout("Actions")] public UnityEvent<int> onSkillUsed = new();
 	new Camera camera;
 	void Awake() => camera = Camera.main;
 

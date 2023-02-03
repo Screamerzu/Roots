@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using NaughtyAttributes;
 
 [System.Serializable]
 public class AbilityCaster
 {
+	public static UnityAction<Ability> onStartCasting;
+	public static UnityAction<Ability> onFinishedCasting;
 	Dictionary<Element, Attack> attacks;
 	Dictionary<Skill, float> skillCooldowns;
-	public Ability.OnFinishedCasting onFinishedCasting;
 	[SerializeField][ReadOnly] bool isCasting;
 
 	public AbilityCaster()
@@ -39,7 +41,7 @@ public class AbilityCaster
 		}
 	}
 
-	public bool UseSkill(IElementHolder instigator, Skill skill, Vector2 direction)
+	public bool UseSkill(IElementHolder instigator, Skill skill, Vector3 direction)
 	{
 		if(isCasting)
 		{
@@ -51,23 +53,43 @@ public class AbilityCaster
 			return false;
 		}
 		
-		onFinishedCasting = skill.StartCasting(direction, instigator);
+		skill.onFinishedCasting.AddListener(onFinishedCasting);
+		skill.StartCasting(direction, instigator);
+		onStartCasting?.Invoke(skill);
 		return true;
 	}
 
-	public bool Attack(IElementHolder instigator, Element element, Vector2 direction)
+	public bool Attack(IElementHolder instigator, Element element, Vector3 direction)
 	{
 		if(isCasting)
 		{
 			return false;
 		}
 
-		onFinishedCasting = attacks[element].StartCasting(direction, instigator);
+		attacks[element].onFinishedCasting.AddListener(onFinishedCasting);
+		attacks[element].StartCasting(direction, instigator);
+		onStartCasting?.Invoke(attacks[element]);
 		return true;
 	}
 
-	void OnCastDone()
+	void OnCastDone(Ability ability)
 	{
+		foreach (var skill in skillCooldowns)
+		{
+			if(skill.Key == ability)
+			{
+				skill.Key.onFinishedCasting.RemoveListener(onFinishedCasting);
+			}
+		}
+
+		foreach (var attack in attacks)
+		{
+			if(attack.Value == ability)
+			{
+				attack.Value.onFinishedCasting.RemoveListener(onFinishedCasting);
+			}
+		}
+
 		isCasting = false;
 	}
 }

@@ -57,23 +57,28 @@ public class PlayerController : MonoBehaviour
 		AbilityCaster.UpdateCooldowns();
 	}
 
+	void FixedUpdate() => UpdateRotation(inputManager.LookDirection);
+	
 	void AttackCurrentElement() => AbilityCaster.Attack(player, player.CurrentElementHeld, inputManager.LookDirection);
 
 	void UpdateMovement(Vector2 direction) => motor.Move(direction * Time.deltaTime);
 
+	void UpdateRotation(Vector3 forward)
+	{
+		transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
+		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y,0);
+	}
+
 	void UseSkill(int skillIndex)
 	{
-		Debug.Log($"Using Skill {skillIndex}");
 		Skill skillToCast = PlayerSkills.ElementAt(skillIndex).Key;
 		if(PlayerSkills[skillToCast] >= 0)
 		{
-			Debug.Log($"Skill cooldown too high: {PlayerSkills[skillToCast]}");
 			return;
 		}
 
 		if(AbilityCaster.UseSkill(player, PlayerSkills.ElementAt(skillIndex).Key, inputManager.LookDirection))
 		{
-			Debug.Log($"Used Skill: {skillToCast}");
 			PlayerSkills[skillToCast] = skillToCast.cooldown;
 		}
 	}

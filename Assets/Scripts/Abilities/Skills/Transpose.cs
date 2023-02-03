@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class Transpose : Skill
 {
-	public override OnFinishedCasting StartCasting(Vector3 direction, IElementHolder instigator)
+	public override void StartCasting(Vector3 direction, IElementHolder instigator)
 	{
-		throw new System.NotImplementedException();
+		foreach (var element in Element.All)
+		{
+			if(instigator.CurrentElementHeld.Dominates(element))
+			{
+				instigator.Regen(element);
+				break;
+			}
+		}
+
+		onFinishedCasting?.Invoke(this);
 	}
 }

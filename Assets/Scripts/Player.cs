@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour, IDamageable, IElementHolder
 {
+	public static Player Instance;
+	public static UnityEvent OnPlayerDied = new();
 	[SerializeField] int maxHealth = 3;
 	[SerializeField][ReadOnly] int health;
 	[SerializeField][ReadOnly] Element elementHeld = Element.Default;
@@ -14,10 +16,18 @@ public class Player : MonoBehaviour, IDamageable, IElementHolder
 	public Element CurrentElementHeld { get => elementHeld; set => elementHeld = value; }
 	public UnityEvent<Element> OnElementHeldChanged { get => onElementHeldChanged; set => onElementHeldChanged = value; }
 
-	void Awake() => health = maxHealth;
+	void Awake()
+	{
+		health = maxHealth;
+		Instance = this;
+	}
 
 	public void Damage(int value, Element element)
 	{
 		health -= value;
+		if(health <= 0)
+		{
+			OnPlayerDied?.Invoke();
+		}
 	}
 }

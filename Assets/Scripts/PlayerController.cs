@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using NaughtyAttributes;
 
 [RequireComponent(typeof(InputManager))]
 [RequireComponent(typeof(Motor))]
@@ -16,52 +17,43 @@ public class PlayerController : MonoBehaviour
 		{ Skill.Commit, 0 },
 	};
 
-	static readonly Dictionary<Element, Attack> PlayerAttacks = new()
-	{ 
-		{ Element.Default, Attack.DefaultAttack },
-		{ Element.Earth, Attack.EarthAttack },
-		{ Element.Fire, Attack.FireAttack },
-		{ Element.Water, Attack.WaterAttack },
-		{ Element.Wind, Attack.WaterAttack },
-	};
-
-	[SerializeField] AbilityCaster abilityCaster;
+	[SerializeField][ReadOnly] AbilityCaster abilityCaster;
 	public AbilityCaster AbilityCaster => abilityCaster;
-	Player player;
-	InputManager inputManager;
-	Motor motor;
+	public Player Player { get; private set; }
+	public InputManager InputManager { get; private set; }
+	public Motor Motor { get; private set; }
 
 	void Awake()
 	{
-		player = GetComponent<Player>();
-		inputManager = GetComponent<InputManager>();
-		motor = GetComponent<Motor>();
-		AbilityCaster.WithSkills(PlayerSkills).WithAttacks(PlayerAttacks);
+		Player = GetComponent<Player>();
+		InputManager = GetComponent<InputManager>();
+		Motor = GetComponent<Motor>();
+		AbilityCaster.WithSkills(PlayerSkills).WithAttacks(Attack.ElementAttackMap);
 	}
 
 	void OnEnable()
 	{
-		inputManager.onShoot.AddListener(AttackCurrentElement);
-		inputManager.onSkillUsed.AddListener(UseSkill);
+		InputManager.onShoot.AddListener(AttackCurrentElement);
+		InputManager.onSkillUsed.AddListener(UseSkill);
 	}
 
 	void OnDisable()
 	{
-		inputManager.onShoot.RemoveListener(AttackCurrentElement);
-		inputManager.onSkillUsed.RemoveListener(UseSkill);
+		InputManager.onShoot.RemoveListener(AttackCurrentElement);
+		InputManager.onSkillUsed.RemoveListener(UseSkill);
 	}
 
 	void Update()
 	{
-		UpdateMovement(inputManager.MoveValue);
+		UpdateMovement(InputManager.MoveValue);
 		AbilityCaster.UpdateCooldowns();
 	}
 
-	void FixedUpdate() => UpdateRotation(inputManager.LookDirection);
+	void FixedUpdate() => UpdateRotation(InputManager.LookDirection);
 	
-	void AttackCurrentElement() => AbilityCaster.Attack(player, player.CurrentElementHeld, inputManager.LookDirection);
+	void AttackCurrentElement() => AbilityCaster.Attack(Player, Player.CurrentElementHeld, InputManager.LookDirection);
 
-	void UpdateMovement(Vector2 direction) => motor.Move(direction * Time.deltaTime);
+	void UpdateMovement(Vector2 direction) => Motor.Move(direction * Time.deltaTime);
 
 	void UpdateRotation(Vector3 forward)
 	{
@@ -77,7 +69,7 @@ public class PlayerController : MonoBehaviour
 			return;
 		}
 
-		if(AbilityCaster.UseSkill(player, PlayerSkills.ElementAt(skillIndex).Key, inputManager.LookDirection))
+		if(AbilityCaster.UseSkill(Player, PlayerSkills.ElementAt(skillIndex).Key, InputManager.LookDirection))
 		{
 			PlayerSkills[skillToCast] = skillToCast.cooldown;
 		}

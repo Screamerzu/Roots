@@ -5,6 +5,6 @@ using UnityEngine.Events;
 
 public abstract class Ability
 {
-	public UnityEvent<Ability> onFinishedCasting = new();
+	public UnityEvent<IElementHolder, Ability> onFinishedCasting = new();
 	public abstract void StartCasting(Vector3 direction, IElementHolder instigator);
 }

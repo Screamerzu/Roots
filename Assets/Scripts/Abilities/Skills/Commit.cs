@@ -16,7 +16,7 @@ public class Commit : Skill
 		lockedElement = player.CurrentElementHeld;
 		player.OnElementHeldChanged.AddListener(ChangeElement);
 		player.StartCoroutine(LockElement());
-		onFinishedCasting?.Invoke(this);
+		onFinishedCasting?.Invoke(instigator, this);
 	}
 
 	void ChangeElement(Element element) => (player as IElementHolder).Regen(lockedElement);

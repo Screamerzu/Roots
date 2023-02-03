@@ -9,6 +9,6 @@ public class Dash : Skill
 	{
 		Player player = instigator as Player;
 		player.transform.position += direction.normalized * DASH_LENGTH;
-		onFinishedCasting?.Invoke(this);
+		onFinishedCasting?.Invoke(instigator, this);
 	}
 }

@@ -9,6 +9,13 @@ public abstract class Attack : Ability
 	public static Attack WaterAttack { get; private set; } = new WaterAttack();
 	public static Attack WindAttack { get; private set; } = new WindAttack();
 	public static Attack EarthAttack { get; private set; } = new EarthAttack();
-
+	public static readonly Dictionary<Element, Attack> ElementAttackMap = new()
+	{ 
+		{ Element.Default, Attack.DefaultAttack },
+		{ Element.Earth, Attack.EarthAttack },
+		{ Element.Fire, Attack.FireAttack },
+		{ Element.Water, Attack.WaterAttack },
+		{ Element.Wind, Attack.WaterAttack },
+	};
 	public Element element { get; protected set; }
 }

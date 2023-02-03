@@ -8,8 +8,8 @@ using NaughtyAttributes;
 [System.Serializable]
 public class AbilityCaster
 {
-	public static UnityAction<Ability> onStartCasting;
-	public static UnityAction<Ability> onFinishedCasting;
+	public static UnityAction<IElementHolder, Ability> onStartCasting;
+	public static UnityAction<IElementHolder, Ability> onFinishedCasting;
 	Dictionary<Element, Attack> attacks;
 	Dictionary<Skill, float> skillCooldowns;
 	[SerializeField][ReadOnly] bool isCasting;
@@ -55,7 +55,7 @@ public class AbilityCaster
 		
 		skill.onFinishedCasting.AddListener(onFinishedCasting);
 		skill.StartCasting(direction, instigator);
-		onStartCasting?.Invoke(skill);
+		onStartCasting?.Invoke(instigator, skill);
 		return true;
 	}
 
@@ -68,11 +68,11 @@ public class AbilityCaster
 
 		attacks[element].onFinishedCasting.AddListener(onFinishedCasting);
 		attacks[element].StartCasting(direction, instigator);
-		onStartCasting?.Invoke(attacks[element]);
+		onStartCasting?.Invoke(instigator, attacks[element]);
 		return true;
 	}
 
-	void OnCastDone(Ability ability)
+	void OnCastDone(IElementHolder elementHolder, Ability ability)
 	{
 		foreach (var skill in skillCooldowns)
 		{

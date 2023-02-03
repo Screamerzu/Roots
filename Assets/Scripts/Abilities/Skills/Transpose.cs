@@ -15,6 +15,6 @@ public class Transpose : Skill
 			}
 		}
 
-		onFinishedCasting?.Invoke(this);
+		onFinishedCasting?.Invoke(instigator, this);
 	}
 }

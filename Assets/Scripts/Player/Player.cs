@@ -24,6 +24,7 @@ public class Player : MonoBehaviour, IDamageable, IElementHolder
 
 	public void Damage(int value, Element element)
 	{
+		
 		health -= value;
 		if(health <= 0)
 		{

@@ -12,5 +12,5 @@ public abstract class Element
 
 	protected Element superiorElement;
 
-	public bool Dominates(Element otherElement) => otherElement == superiorElement;
+	public bool IsDominatedBy(Element otherElement) => otherElement == superiorElement;
 }

@@ -8,7 +8,7 @@ public class Transpose : Skill
 	{
 		foreach (var element in Element.All)
 		{
-			if(instigator.CurrentElementHeld.Dominates(element))
+			if(instigator.CurrentElementHeld.IsDominatedBy(element))
 			{
 				instigator.Regen(element);
 				break;

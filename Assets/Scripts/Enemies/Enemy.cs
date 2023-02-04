@@ -14,7 +14,14 @@ public class Enemy : MonoBehaviour, IDamageable, IElementHolder
 
 	public void Damage(int value, Element element)
 	{
-		health -= value;
+		int lostValue = value;
+		if(CurrentElementHeld.IsDominatedBy(element))
+		{
+			lostValue *= IDamageable.DAMAGE_MULTIPLIER;
+			DamageDealer.OnPerfectDamageDealt?.Invoke(lostValue);
+		}
+
+		health -= lostValue;
 		if(health <= 0)
 		{
 			OnEnemyDied?.Invoke(this);

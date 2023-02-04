@@ -18,4 +18,9 @@ public abstract class Attack : Ability
 		{ Element.Wind, Attack.WaterAttack },
 	};
 	public Element element { get; protected set; }
+	
+	protected string DamageDealerPrefabName{ get; set; }
+	protected DamageDealer DamageDealerPrefab => Resources.Load<DamageDealer>(DamageDealerPrefabName);
+	protected int Damage{ get; set; }
+
 }

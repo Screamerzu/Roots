@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dash : Skill
 {
 	const float DASH_LENGTH = 2f;
+	public Dash() => cooldown = 3;
 	public override void StartCasting(Vector3 direction, IElementHolder instigator)
 	{
 		Player player = instigator as Player;

@@ -10,34 +10,34 @@ public class AbilityCaster
 {
 	public static UnityAction<IElementHolder, Ability> onStartCasting;
 	public static UnityAction<IElementHolder, Ability> onFinishedCasting;
-	Dictionary<Element, Attack> attacks;
-	Dictionary<Skill, float> skillCooldowns;
+	public Dictionary<Element, Attack> Attacks{ get; private set; }
+	public Dictionary<Skill, float> SkillCooldowns{ get; private set; }
 	[SerializeField][ReadOnly] bool isCasting;
 
 	public AbilityCaster()
 	{
-		attacks = new();
-		skillCooldowns = new();
+		Attacks = new();
+		SkillCooldowns = new();
 		onFinishedCasting += OnCastDone;
 	}
 
 	public AbilityCaster WithAttacks(Dictionary<Element, Attack> attacks)
 	{
-		this.attacks = attacks;
+		this.Attacks = attacks;
 		return this;
 	}
 
 	public AbilityCaster WithSkills(Dictionary<Skill, float> skills)
 	{
-		this.skillCooldowns = skills;
+		this.SkillCooldowns = skills;
 		return this;
 	}
 
 	public void UpdateCooldowns()
 	{
-		foreach (var key in skillCooldowns.Keys.ToArray())
+		foreach (var key in SkillCooldowns.Keys.ToArray())
 		{
-			skillCooldowns[key] -= Time.deltaTime;
+			SkillCooldowns[key] -= Time.deltaTime;
 		}
 	}
 
@@ -48,11 +48,12 @@ public class AbilityCaster
 			return false;
 		}
 
-		if(skillCooldowns[skill] > 0)
+		if(SkillCooldowns[skill] > 0)
 		{
 			return false;
 		}
 		
+		SkillCooldowns[skill] = skill.cooldown;
 		skill.onFinishedCasting.AddListener(onFinishedCasting);
 		skill.StartCasting(direction, instigator);
 		onStartCasting?.Invoke(instigator, skill);
@@ -66,15 +67,15 @@ public class AbilityCaster
 			return false;
 		}
 
-		attacks[element].onFinishedCasting.AddListener(onFinishedCasting);
-		attacks[element].StartCasting(direction, instigator);
-		onStartCasting?.Invoke(instigator, attacks[element]);
+		Attacks[element].onFinishedCasting.AddListener(onFinishedCasting);
+		Attacks[element].StartCasting(direction, instigator);
+		onStartCasting?.Invoke(instigator, Attacks[element]);
 		return true;
 	}
 
 	void OnCastDone(IElementHolder elementHolder, Ability ability)
 	{
-		foreach (var skill in skillCooldowns)
+		foreach (var skill in SkillCooldowns)
 		{
 			if(skill.Key == ability)
 			{
@@ -82,7 +83,7 @@ public class AbilityCaster
 			}
 		}
 
-		foreach (var attack in attacks)
+		foreach (var attack in Attacks)
 		{
 			if(attack.Value == ability)
 			{

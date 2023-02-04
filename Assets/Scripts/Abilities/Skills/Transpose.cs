@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Transpose : Skill
 {
+
+	public Transpose() => cooldown = 5;
 	public override void StartCasting(Vector3 direction, IElementHolder instigator)
 	{
 		foreach (var element in Element.All)

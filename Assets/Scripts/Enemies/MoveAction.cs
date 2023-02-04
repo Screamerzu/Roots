@@ -15,7 +15,7 @@ public class MoveAction : AIAction
 	
 	public override bool PerformLoop(AIController controller)
 	{
-		controller.NavMeshAgent.SetDestination(Player.Instance.transform.position);
+		controller.NavMeshAgent.SetDestination(PlayerController.Instance.transform.position);
 		
 		return HasReachedDistantion(controller);
 	}

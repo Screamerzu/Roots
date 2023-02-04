@@ -8,6 +8,7 @@ public abstract class Skill : Ability
 	public static readonly Dash Dash = new();
 	public static readonly Source Source = new();
 	public static readonly Transpose Transpose = new();
+	public static readonly Skill[] All = { Commit, Dash, Source, Transpose };
 
 	public float cooldown { get; protected set; }
 }

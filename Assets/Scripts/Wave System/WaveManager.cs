@@ -6,7 +6,7 @@ using NaughtyAttributes;
 
 public class WaveManager : MonoBehaviour
 {
-	public static UnityEvent OnWaveStart;
+	public static UnityEvent<int> OnWaveStart = new();
 	[SerializeField] List<Wave> Waves = new();
 	[SerializeField] Vector2 spawnSize;
 	[SerializeField][ReadOnly] int currentWaveIndex = 0;
@@ -37,8 +37,12 @@ public class WaveManager : MonoBehaviour
 		}
 	}
 
-	void SpawnCurrentWave() => StartCoroutine(Waves[currentWaveIndex].Spawn(transform.position, spawnSize));
-
+	void SpawnCurrentWave()
+	{
+		OnWaveStart?.Invoke(currentWaveIndex);
+		StartCoroutine(Waves[currentWaveIndex].Spawn(transform.position, spawnSize));
+	}
+	
 	[Button]
 	[ContextMenu("Add Wave")]
 	void AddWave()

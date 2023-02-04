@@ -9,6 +9,7 @@ using NaughtyAttributes;
 [RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour
 {
+	public static PlayerController Instance;
 	static readonly Dictionary<Skill, float> PlayerSkills = new()
 	{ 
 		{ Skill.Source, 0 },
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
 	void Awake()
 	{
+		Instance = this;
 		Player = GetComponent<Player>();
 		InputManager = GetComponent<InputManager>();
 		Motor = GetComponent<Motor>();

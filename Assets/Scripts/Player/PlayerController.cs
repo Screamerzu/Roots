@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	void FixedUpdate() => UpdateRotation(InputManager.LookDirection);
-	
+
 	void AttackCurrentElement()
 	{
 		if(AbilityCaster.Attack(Player, Player.CurrentElementHeld, InputManager.LookDirection))
@@ -61,13 +61,9 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void UpdateMovement(Vector2 direction) => Motor.Move(direction * Time.deltaTime);
+	void UpdateMovement(Vector3 direction) => Motor.Move(direction * Time.deltaTime);
 
-	void UpdateRotation(Vector3 forward)
-	{
-		transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
-		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-	}
+	void UpdateRotation(Vector3 forward) => Motor.Rotate(forward);
 
 	void UseSkill(int skillIndex)
 	{

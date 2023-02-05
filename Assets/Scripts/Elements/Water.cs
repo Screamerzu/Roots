@@ -4,9 +4,5 @@ using UnityEngine;
 
 public class Water : Element
 {
-	public Water()
-	{
-		superiorElement = Element.Wind;
-		name = "Water";
-	}
+	protected override Element[] SuperiorElements => new Element[]{ Wind, SuperiorToAll };
 }

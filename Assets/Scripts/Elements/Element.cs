@@ -1,17 +1,37 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public abstract class Element
 {
-	public static readonly Element Default = new Default();
-	public static readonly Element Fire = new Fire();
-	public static readonly Element Wind = new Wind();
-	public static readonly Element Earth = new Earth();
-	public static readonly Element Water = new Water();
-	public static readonly Element[] All  = { Default, Fire, Wind, Earth, Water };
+	static Element defaultElement = new Default();
+	static Element fireElement = new Fire();
+	static Element windElement = new Wind();
+	static Element earthElement = new Earth();
+	static Element waterElement = new Water();
+	static Element superiorElement = new SuperiorToAll();
+	static List<Element> all = new(){ defaultElement, fireElement, windElement, earthElement, waterElement, superiorElement };
 
-	protected Element superiorElement;
+	public static Element Default => defaultElement;
+	public static Element Fire => fireElement;
+	public static Element Wind => windElement;
+	public static Element Earth => earthElement;
+	public static Element Water => waterElement;
+	public static Element SuperiorToAll => superiorElement;
+	public static Element[] All => all.ToArray();
+	
+	protected abstract Element[] SuperiorElements{ get; }
 
-	public string name;
-	public bool IsDominatedBy(Element otherElement) => otherElement == superiorElement;
+	public bool IsDominatedBy(Element otherElement)
+	{
+		foreach (var superiorElement in SuperiorElements)
+		{
+			if(otherElement == superiorElement)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

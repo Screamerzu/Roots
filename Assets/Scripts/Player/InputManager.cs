@@ -12,7 +12,7 @@ public class InputManager : MonoBehaviour
 	[SerializeField] KeyCode ability3Key = KeyCode.Space;
 	[SerializeField] KeyCode ability4Key = KeyCode.F;
 
-	public Vector2 MoveValue => new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+	public Vector3 MoveValue => new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 	public Vector2 MouseMovementValue => new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 	public Vector3 MousePosition => Input.mousePosition;
 	public Vector3 MousePositionLevelWithPlayer

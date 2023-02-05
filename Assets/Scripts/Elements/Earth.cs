@@ -4,9 +4,5 @@ using UnityEngine;
 
 public class Earth : Element
 {
-	public Earth()
-	{
-		superiorElement = Element.Fire;
-		name = "Earth";
-	}
+	protected override Element[] SuperiorElements => new Element[]{ Fire, SuperiorToAll };
 }

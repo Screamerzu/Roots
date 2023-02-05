@@ -8,6 +8,6 @@ public class ElementDisplayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        elementTypeText.text = "Current Element > " + PlayerController.Instance.GetComponent<IElementHolder>().CurrentElementHeld.name;
+        elementTypeText.text = "Current Element > " + PlayerController.Instance.GetComponent<IElementHolder>().CurrentElementHeld;
 	}
 }

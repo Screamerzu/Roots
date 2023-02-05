@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Earth : Element
 {
-	public Earth() => superiorElement =  Element.Fire;
+	public Earth()
+	{
+		superiorElement = Element.Fire;
+		name = "Earth";
+	}
 }

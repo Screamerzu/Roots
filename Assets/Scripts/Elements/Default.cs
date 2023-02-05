@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Default : Element
 {
-	public Default() => superiorElement =  null;
+	public Default()
+	{
+		superiorElement = null;
+		name = "None";
+	}
 }

@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 1518312626429140977}
   - component: {fileID: 2472692079319799999}
   - component: {fileID: 6209571561030797387}
+  - component: {fileID: 3874510070025244855}
   m_Layer: 0
   m_Name: Point3
   m_TagString: Untagged
@@ -308,9 +309,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamageDealt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3874510070025244855}
+        m_TargetAssemblyTypeName: SoundEffectHandler, Assembly-CSharp
+        m_MethodName: SpawnSoundEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   damageAmount: 0
   ImpactVFX: {fileID: 0}
+--- !u!114 &3874510070025244855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2275183533430924004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1228c18f144ad745945c1113521d103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 8300000, guid: cdb4a4f93eb1f4a439dc4e652e0bb875, type: 3}
+  volume: 0.634
 --- !u!1 &5200229098702841157
 GameObject:
   m_ObjectHideFlags: 0

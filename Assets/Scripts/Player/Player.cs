@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageable, IElementHolder
 {
@@ -17,7 +18,11 @@ public class Player : MonoBehaviour, IDamageable, IElementHolder
 	public Element CurrentElementHeld { get => elementHeld; set => elementHeld = value; }
 	public UnityEvent<Element> OnElementHeldChanged { get => onElementHeldChanged; set => onElementHeldChanged = value; }
 
-	void Awake() => Heal();
+	void Awake()
+	{
+		Heal();
+		OnPlayerDied.AddListener(() => RestartTheGame());
+	}
 
 	public void Damage(int value, Element element)
 	{
@@ -37,4 +42,8 @@ public class Player : MonoBehaviour, IDamageable, IElementHolder
 
 	[Button]
 	void ShowElementHeld() => Debug.Log(CurrentElementHeld);
+
+	void RestartTheGame() {
+		SceneManager.LoadScene(1);
+	}
 }

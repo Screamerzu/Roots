@@ -4890,6 +4890,7 @@ GameObject:
   - component: {fileID: 1263320787601630406}
   - component: {fileID: -201564802073133724}
   - component: {fileID: 6753897004467404106}
+  - component: {fileID: 5020713058844872074}
   m_Layer: 0
   m_Name: WindAttackPrefab
   m_TagString: Untagged
@@ -4940,6 +4941,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamageDealt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5020713058844872074}
+        m_TargetAssemblyTypeName: SoundEffectHandler, Assembly-CSharp
+        m_MethodName: SpawnSoundEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   damageAmount: 0
   ImpactVFX: {fileID: 3565163484026869536, guid: 2cc091478b6bc2d49b9d937279c219b0, type: 3}
+--- !u!114 &5020713058844872074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886435840556919094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1228c18f144ad745945c1113521d103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 8300000, guid: cdb4a4f93eb1f4a439dc4e652e0bb875, type: 3}
+  volume: 0.634

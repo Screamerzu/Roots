@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 1157421561813210478}
   - component: {fileID: 6544662195696518839}
   - component: {fileID: -252053251251711245}
+  - component: {fileID: 6630331570907680964}
   m_Layer: 0
   m_Name: WindAbsorption
   m_TagString: Untagged
@@ -295,7 +296,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a643bd2d923b2458781f5e3baa327b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onAbsorbingElement:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6630331570907680964}
+        m_TargetAssemblyTypeName: SoundEffectHandler, Assembly-CSharp
+        m_MethodName: SpawnSoundEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   target: {fileID: 845592667971537980}
+--- !u!114 &6630331570907680964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135768939100362635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1228c18f144ad745945c1113521d103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 8300000, guid: cdb4a4f93eb1f4a439dc4e652e0bb875, type: 3}
+  volume: 0.727
 --- !u!1 &7704949888382462287
 GameObject:
   m_ObjectHideFlags: 0

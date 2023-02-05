@@ -4829,6 +4829,7 @@ GameObject:
   - component: {fileID: 4883505595705787952}
   - component: {fileID: -715465494845470738}
   - component: {fileID: -5803828242509715486}
+  - component: {fileID: 5780737704993805535}
   m_Layer: 0
   m_Name: FireAttackProjectile
   m_TagString: Untagged
@@ -9733,7 +9734,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamageDealt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5780737704993805535}
+        m_TargetAssemblyTypeName: SoundEffectHandler, Assembly-CSharp
+        m_MethodName: SpawnSoundEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   damageAmount: 0
   ImpactVFX: {fileID: 5713065699548138593, guid: a3ed5b20f228c4347aa5a96079610cdc, type: 3}
 --- !u!114 &-715465494845470738
@@ -9762,6 +9775,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 3
+--- !u!114 &5780737704993805535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666038873888899157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1228c18f144ad745945c1113521d103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 8300000, guid: 8659add1053e9314a998c44da520edcd, type: 3}
+  volume: 0.63
 --- !u!1 &4231201478545700993
 GameObject:
   m_ObjectHideFlags: 0

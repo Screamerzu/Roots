@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 2592094557414474000}
   - component: {fileID: 3253693341631833420}
   - component: {fileID: 1427433634163555400}
+  - component: {fileID: 8675183867540381084}
   m_Layer: 0
   m_Name: EarthAbsorption
   m_TagString: Untagged
@@ -295,7 +296,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a643bd2d923b2458781f5e3baa327b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onAbsorbingElement:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8675183867540381084}
+        m_TargetAssemblyTypeName: SoundEffectHandler, Assembly-CSharp
+        m_MethodName: SpawnSoundEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   target: {fileID: 6314441139778018369}
+--- !u!114 &8675183867540381084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106297669357896903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1228c18f144ad745945c1113521d103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 8300000, guid: 25ce1bc3d639f0947b78b7c001c0b521, type: 3}
+  volume: 0.534
 --- !u!1 &7336792701711907548
 GameObject:
   m_ObjectHideFlags: 0

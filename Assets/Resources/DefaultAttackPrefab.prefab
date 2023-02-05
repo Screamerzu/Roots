@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4043845555396764408}
   - component: {fileID: 812230454581364593}
   - component: {fileID: 1297514439111115445}
+  - component: {fileID: 3309138752965699507}
   m_Layer: 0
   m_Name: DefaultAttackPrefab
   m_TagString: Untagged
@@ -78,6 +79,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0.6
+--- !u!114 &3309138752965699507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2934936487296586340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1228c18f144ad745945c1113521d103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 8300000, guid: cdb4a4f93eb1f4a439dc4e652e0bb875, type: 3}
+  volume: 0.577
 --- !u!1 &7027735834240746759
 GameObject:
   m_ObjectHideFlags: 0

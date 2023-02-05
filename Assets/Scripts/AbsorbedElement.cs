@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.VFX;
 
 public class AbsorbedElement : MonoBehaviour
 {
+	public UnityEvent onAbsorbingElement;
 	[SerializeField] Transform target;
 	Element element;
 	VisualEffect vfx;

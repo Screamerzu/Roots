@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 5016508493299869082}
   - component: {fileID: 8355548563491704897}
   - component: {fileID: 5359394520090961936}
+  - component: {fileID: 609621314998626299}
   m_Layer: 0
   m_Name: EarthAttackPrefab
   m_TagString: Untagged
@@ -284,7 +285,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamageDealt:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 609621314998626299}
+        m_TargetAssemblyTypeName: SoundEffectHandler, Assembly-CSharp
+        m_MethodName: SpawnSoundEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   damageAmount: 0
   ImpactVFX: {fileID: 0}
 --- !u!114 &5359394520090961936
@@ -300,6 +313,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 1
+--- !u!114 &609621314998626299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899041177336694448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1228c18f144ad745945c1113521d103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 8300000, guid: ee7940269a1553644ba6e97e3d854559, type: 3}
+  volume: 0.663
 --- !u!1 &7722573447395734106
 GameObject:
   m_ObjectHideFlags: 0

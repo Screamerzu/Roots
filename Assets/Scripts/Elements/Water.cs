@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Water : Element
 {
-	public Water() => superiorElement =  Element.Wind;
+	public Water()
+	{
+		superiorElement = Element.Wind;
+		name = "Water";
+	}
 }

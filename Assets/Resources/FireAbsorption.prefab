@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 6258423641765056527}
   - component: {fileID: 5690999728256747227}
   - component: {fileID: -5118732348346451453}
+  - component: {fileID: 2303107936300361344}
   m_Layer: 0
   m_Name: FireAbsorption
   m_TagString: Untagged
@@ -326,4 +327,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a643bd2d923b2458781f5e3baa327b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onAbsorbingElement:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2303107936300361344}
+        m_TargetAssemblyTypeName: SoundEffectHandler, Assembly-CSharp
+        m_MethodName: SpawnSoundEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   target: {fileID: 3234743597944592843}
+--- !u!114 &2303107936300361344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059239328681696666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1228c18f144ad745945c1113521d103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 8300000, guid: 25ce1bc3d639f0947b78b7c001c0b521, type: 3}
+  volume: 0.62

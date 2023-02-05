@@ -15,7 +15,7 @@ public abstract class Attack : Ability
 		{ Element.Earth, Attack.EarthAttack },
 		{ Element.Fire, Attack.FireAttack },
 		{ Element.Water, Attack.WaterAttack },
-		{ Element.Wind, Attack.WaterAttack },
+		{ Element.Wind, Attack.WindAttack },
 	};
 	public Element element { get; protected set; }
 	

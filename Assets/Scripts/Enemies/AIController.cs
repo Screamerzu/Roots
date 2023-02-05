@@ -27,8 +27,10 @@ public class AIController : MonoBehaviour
 	void Update()
 	{
 		UpdateActions();
+		UpdateRotation();
 	}
 
+	void UpdateRotation() => transform.rotation = Quaternion.LookRotation((PlayerController.Instance.transform.position - transform.position).normalized);
 	void UpdateActions()
 	{
 		if(currentAction.PerformLoop(this))

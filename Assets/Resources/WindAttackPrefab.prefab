@@ -4888,8 +4888,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1263320787601630406}
+  - component: {fileID: -201564802073133724}
+  - component: {fileID: 6753897004467404106}
   m_Layer: 0
-  m_Name: WindSlashPrefab
+  m_Name: WindAttackPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4911,3 +4913,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &-201564802073133724
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886435840556919094}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 1, z: 2}
+  m_Center: {x: 0, y: 0, z: 2}
+--- !u!114 &6753897004467404106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886435840556919094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6279a443eca634fbeb7c4be16b65a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamageDealt:
+    m_PersistentCalls:
+      m_Calls: []
+  damageAmount: 0
+  ImpactVFX: {fileID: 3565163484026869536, guid: 2cc091478b6bc2d49b9d937279c219b0, type: 3}

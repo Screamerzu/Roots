@@ -24,6 +24,6 @@ public class MoveAction : AIAction
 		return IsBeyondFollowTime();
 	}
 	
-	bool IsBeyondFollowTime() =>followTime > (Time.time - startTime);
+	bool IsBeyondFollowTime() => (Time.time - startTime) > followTime;
 
 }

@@ -53,7 +53,13 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate() => UpdateRotation(InputManager.LookDirection);
 	
-	void AttackCurrentElement() => AbilityCaster.Attack(Player, Player.CurrentElementHeld, InputManager.LookDirection);
+	void AttackCurrentElement()
+	{
+		if(AbilityCaster.Attack(Player, Player.CurrentElementHeld, InputManager.LookDirection))
+		{
+			(Player as IElementHolder).Consume();
+		}
+	}
 
 	void UpdateMovement(Vector2 direction) => Motor.Move(direction * Time.deltaTime);
 

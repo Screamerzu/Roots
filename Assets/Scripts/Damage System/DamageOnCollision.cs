@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Collider))]
 public class DamageOnCollision : DamageDealer
 {
 	public UnityEvent onDamageDealt;
@@ -29,14 +28,30 @@ public class DamageOnCollision : DamageDealer
 		GetComponent<Collider>().isTrigger = false;
 		return this;
 	}
-	public DamageOnCollision ThenSelfDestruct()
+	public DamageOnCollision ThenSelfDestructImmediately()
 	{
 		onDamageDealt.AddListener(SelfDestruct);
 		return this;
 	}
-
-	void SpawnImapctVFX()
+	public DamageOnCollision ThenSelfDestructIn(float time)
 	{
+		onDamageDealt.AddListener( () => SelfDestructAfter(time) );
+		return this;
+	}
+
+	void SelfDestructAfter(float time)
+	{
+		onDamageDealt.RemoveAllListeners();
+		Destroy(gameObject, time);
+	}
+
+	void HandleImpact()
+	{
+		foreach (var collider in GetComponents<Collider>())
+		{
+			collider.enabled = false;
+		}
+
 		if(!ImpactVFX)
 		{
 			return;
@@ -45,11 +60,7 @@ public class DamageOnCollision : DamageDealer
 		Instantiate(ImpactVFX, transform.position, transform.rotation);
 	}
 
-	void SelfDestruct()
-	{
-		onDamageDealt.RemoveAllListeners();
-		Destroy(gameObject);
-	}
+	void SelfDestruct() => SelfDestructAfter(0);
 	
 	void OnTriggerEnter(Collider other)
 	{
@@ -70,8 +81,7 @@ public class DamageOnCollision : DamageDealer
 				return;
 			}
 			
-			gameObject.SetActive(false);
-			SpawnImapctVFX();
+			HandleImpact();
 			DealDamageToTarget(player, damageAmount, element);
 			onDamageDealt?.Invoke();
 		}
@@ -82,8 +92,7 @@ public class DamageOnCollision : DamageDealer
 				return;
 			}
 
-			gameObject.SetActive(false);
-			SpawnImapctVFX();
+			HandleImpact();
 			DealDamageToTarget(enemy, damageAmount, element);
 			onDamageDealt?.Invoke();
 		}

@@ -17,6 +17,6 @@ public class FireAttack : Attack
 		GameObject projectile = GameObject.Instantiate(DamageDealerPrefab, (instigator as MonoBehaviour).transform.position, Quaternion.LookRotation(direction));
 		var damageDealer = projectile.GetComponent<DamageOnCollision>();
 		damageDealer.SetInstigator(instigator);
-		damageDealer.Deal(Damage).OfElement(Element.Fire).OnCollision().ThenSelfDestruct();
+		damageDealer.Deal(Damage).OfElement(Element.Fire).OnCollision().ThenSelfDestructImmediately();
 	}
 }

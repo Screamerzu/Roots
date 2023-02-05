@@ -8,6 +8,6 @@ public interface IElementHolder
 	Element CurrentElementHeld { get; set; }
 	UnityEvent<Element> OnElementHeldChanged { get; set; }
 
-	void Consume(Element element) => CurrentElementHeld = Element.Default;
+	void Consume() => CurrentElementHeld = Element.Default;
 	void Regen(Element element) => CurrentElementHeld = element;
 }

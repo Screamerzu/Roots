@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2751a4c043eb54d9f2c4763f95f3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentElementHeldIndex: 0
+  currentElementHeldIndex: 4
   maxHealth: 3
   health: 3
 --- !u!114 &3555775251053497112
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleActions:
   - rid: 4810818657910521861
+  - rid: 2487089933487439872
   currentAction:
     rid: -2
   abilityCaster:
@@ -127,12 +128,16 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2487089933487439872
+      type: {class: AbilityAction, ns: , asm: Assembly-CSharp}
+      data:
+        priority: 100
     - rid: 4810818657910521861
       type: {class: MoveAction, ns: , asm: Assembly-CSharp}
       data:
-        priority: 5000
+        priority: 1000
         speed: 3
-        followDistance: 5
+        followDistance: 3
 --- !u!114 &3148963887194342500
 MonoBehaviour:
   m_ObjectHideFlags: 0

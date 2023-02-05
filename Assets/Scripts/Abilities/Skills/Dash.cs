@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dash : Skill
 {
-	const float DASH_LENGTH = 2f;
+	const float DASH_LENGTH = 10f;
 	public Dash() => cooldown = 3;
 	public override void StartCasting(Vector3 direction, IElementHolder instigator)
 	{

@@ -7,5 +7,7 @@ public class WindAttack : Attack
 	public override void StartCasting(Vector3 direction, IElementHolder instigator)
 	{
 		throw new System.NotImplementedException();
+
+		onFinishedCasting?.Invoke(instigator, this);
 	}
 }

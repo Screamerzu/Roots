@@ -4828,6 +4828,7 @@ GameObject:
   - component: {fileID: 1666532628072790894}
   - component: {fileID: 4883505595705787952}
   - component: {fileID: -715465494845470738}
+  - component: {fileID: -5803828242509715486}
   m_Layer: 0
   m_Name: FireAttackProjectile
   m_TagString: Untagged
@@ -9730,10 +9731,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6279a443eca634fbeb7c4be16b65a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0
   onDamageDealt:
     m_PersistentCalls:
       m_Calls: []
+  damageAmount: 0
   ImpactVFX: {fileID: 5713065699548138593, guid: a3ed5b20f228c4347aa5a96079610cdc, type: 3}
 --- !u!114 &-715465494845470738
 MonoBehaviour:
@@ -9748,6 +9749,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+--- !u!114 &-5803828242509715486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3666038873888899157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efc383eae24b344f8e402e90f9ae09a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 3
 --- !u!1 &4231201478545700993
 GameObject:
   m_ObjectHideFlags: 0

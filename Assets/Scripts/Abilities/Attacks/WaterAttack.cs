@@ -17,5 +17,6 @@ public class WaterAttack : Attack
 		GameObject damageDealer = GameObject.Instantiate<GameObject>(DamageDealerPrefab, instigatorTransform.position, Quaternion.identity);
 		var waterTargetSetter = damageDealer.GetComponent<WaterAttackTargetSetter>();
 		waterTargetSetter.InstigatedBy(instigator).OfTarget(instigatorTransform.position + direction * ATTACK_DISTANCE).WithDamage(Damage);
+		onFinishedCasting?.Invoke(instigator, this);
 	}
 }

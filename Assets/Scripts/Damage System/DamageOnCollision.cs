@@ -57,7 +57,7 @@ public class DamageOnCollision : DamageDealer
 			return;
 		}
 
-		Instantiate(ImpactVFX, transform.position, transform.rotation);
+		Instantiate(ImpactVFX, transform.position, transform.rotation).transform.up = transform.forward;
 	}
 
 	void SelfDestruct() => SelfDestructAfter(0);

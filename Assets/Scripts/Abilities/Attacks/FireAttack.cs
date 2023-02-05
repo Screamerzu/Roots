@@ -18,5 +18,6 @@ public class FireAttack : Attack
 		var damageDealer = projectile.GetComponent<DamageOnCollision>();
 		damageDealer.SetInstigator(instigator);
 		damageDealer.Deal(Damage).OfElement(Element.Fire).OnCollision().ThenSelfDestructImmediately();
+		onFinishedCasting?.Invoke(instigator, this);
 	}
 }

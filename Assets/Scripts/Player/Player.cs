@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, IDamageable, IElementHolder
 	public int MaxHealth => maxHealth;
 	[SerializeField] int maxHealth = 3;
 	[SerializeField][ReadOnly] int health;
-	[SerializeField][ReadOnly] Element elementHeld = Element.Water;
+	[SerializeField][ReadOnly] Element elementHeld = Element.Default;
 	[SerializeField] UnityEvent<Element> onElementHeldChanged;
 
 	public Element CurrentElementHeld { get => elementHeld; set => elementHeld = value; }

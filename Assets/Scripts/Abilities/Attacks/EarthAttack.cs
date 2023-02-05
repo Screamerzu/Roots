@@ -13,6 +13,9 @@ public class EarthAttack : Attack
 	{
 		Transform instigatorTransform = (instigator as MonoBehaviour).transform;
 		var punchPrefab = GameObject.Instantiate(DamageDealerPrefab, instigatorTransform.position, Quaternion.LookRotation(instigatorTransform.forward));
-		var damageDealer = punchPrefab.GetComponent<DamageOnCollision>().Deal(Damage).OfElement(Element.Earth).OnTrigger().ThenSelfDestructIn(3);
+		var damageDealer = punchPrefab.GetComponent<DamageOnCollision>();
+		damageDealer.SetInstigator(instigator);
+		damageDealer.Deal(Damage).OfElement(Element.Earth).OnTrigger().ThenSelfDestructIn(3);
+		onFinishedCasting?.Invoke(instigator, this);
 	}
 }

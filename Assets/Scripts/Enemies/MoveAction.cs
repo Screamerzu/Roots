@@ -7,8 +7,12 @@ public class MoveAction : AIAction
 {
 	[SerializeField] float speed;
 	[SerializeField] float followDistance;
+	float followTime;
+	float startTime;
 	public override void Initialize(AIController controller)
 	{
+		startTime = Time.time;
+		followTime = Random.Range(2, 5);
 		controller.NavMeshAgent.stoppingDistance = followDistance;
 		controller.NavMeshAgent.speed = speed;
 	}
@@ -17,8 +21,9 @@ public class MoveAction : AIAction
 	{
 		controller.NavMeshAgent.SetDestination(PlayerController.Instance.transform.position);
 		
-		return HasReachedDistantion(controller);
+		return IsBeyondFollowTime();
 	}
 	
-	bool HasReachedDistantion(AIController controller) => controller.NavMeshAgent.isStopped;
+	bool IsBeyondFollowTime() =>followTime > (Time.time - startTime);
+
 }

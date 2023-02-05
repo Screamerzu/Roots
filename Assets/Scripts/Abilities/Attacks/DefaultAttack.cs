@@ -17,5 +17,6 @@ public class DefaultAttack : Attack
 
 		damageDealer.SetInstigator(instigator);
 		damageDealer.Deal(Damage).OfElement(Element.Default).OnTrigger().ThenSelfDestructIn(3);
+		onFinishedCasting?.Invoke(instigator, this);
 	}
 }

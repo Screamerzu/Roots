@@ -133,11 +133,11 @@ MonoBehaviour:
       data:
         priority: 1000
         speed: 2
-        followDistance: 5
+        followDistance: 4
     - rid: 4810818657910521866
       type: {class: AbilityAction, ns: , asm: Assembly-CSharp}
       data:
-        priority: 0
+        priority: 1000
 --- !u!114 &1026232378591513881
 MonoBehaviour:
   m_ObjectHideFlags: 0

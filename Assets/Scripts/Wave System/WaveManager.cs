@@ -27,7 +27,7 @@ public class WaveManager : MonoBehaviour
 		while(true)
 		{
 			SpawnCurrentWave();
-			yield return new WaitUntil(() => !Waves[currentWaveIndex].IsDone());
+			yield return new WaitUntil(() => Waves[currentWaveIndex].IsDone());
 
 			currentWaveIndex ++;
 			if(currentWaveIndex >= Waves.Count)

@@ -11,6 +11,7 @@ public class WaveManager : MonoBehaviour
 	[SerializeField] Vector2 spawnSize;
 	[SerializeField][ReadOnly] int currentWaveIndex = 0;
 
+	void Start() => StartWaves();
 	void OnDrawGizmos()
 	{
 		Color color = Color.green;

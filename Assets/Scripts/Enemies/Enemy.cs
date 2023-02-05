@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using NaughtyAttributes;
@@ -5,7 +6,22 @@ using NaughtyAttributes;
 public class Enemy : MonoBehaviour, IDamageable, IElementHolder
 {
 	public static UnityEvent<Enemy> OnEnemyDied = new();
-	public Element CurrentElementHeld { get; set; } = Element.Default;
+	[SerializeField] int currentElementHeldIndex = 0;
+	public Element CurrentElementHeld 
+	{ 
+		get => Element.All[currentElementHeldIndex]; 
+		set
+		{
+			for (int i = 0; i < Element.All.Length; i++)
+			{
+				if(Element.All[i] == value)
+				{
+					currentElementHeldIndex = i;
+					break;
+				}
+			}
+		}
+	}
 	[SerializeField] int maxHealth = 3;
 	[SerializeField] int health;
 	public UnityEvent<Element> OnElementHeldChanged { get; set; }
@@ -25,6 +41,7 @@ public class Enemy : MonoBehaviour, IDamageable, IElementHolder
 		if(health <= 0)
 		{
 			OnEnemyDied?.Invoke(this);
+			Destroy(gameObject);
 		}
 	}
 }

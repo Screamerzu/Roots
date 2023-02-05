@@ -22,13 +22,13 @@ public class InputManager : MonoBehaviour
 			Ray ray = camera.ScreenPointToRay(MousePosition);
 			if(Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, layerMask: floorMask))
 			{
-				return new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
+				return new Vector3(hitInfo.point.x, transform.position.y, hitInfo.point.z);
 			}
 
 			return default;
 		}
 	}
-	public Vector3 LookDirection => MousePositionLevelWithPlayer - transform.position;
+	public Vector3 LookDirection => (MousePositionLevelWithPlayer - transform.position).normalized;
 
 	[Foldout("Actions")] public UnityEvent onShoot = new();
 	[Foldout("Actions")] public UnityEvent<int> onSkillUsed = new();

@@ -10,8 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3555775251053497113}
   - component: {fileID: 3555775251053497114}
+  - component: {fileID: 6555182398885210125}
+  - component: {fileID: 1791700194727484390}
   - component: {fileID: 3555775251053497115}
   - component: {fileID: 3555775251053497112}
+  - component: {fileID: 3148963887194342500}
   m_Layer: 0
   m_Name: Iceiano
   m_TagString: Untagged
@@ -57,6 +60,35 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &6555182398885210125
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555775251053497118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!54 &1791700194727484390
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555775251053497118}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &3555775251053497115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2751a4c043eb54d9f2c4763f95f3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentElementHeldIndex: 0
   maxHealth: 3
   health: 3
 --- !u!114 &3555775251053497112
@@ -100,6 +133,18 @@ MonoBehaviour:
         priority: 5000
         speed: 3
         followDistance: 5
+--- !u!114 &3148963887194342500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555775251053497118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf9729ba6e410fd4ab0091b7772b602f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3555775249492533730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,10 +158,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5620401196900255136, guid: 03d8c3c2b4ca1dd489550d5063e0359c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620401196900255136, guid: 03d8c3c2b4ca1dd489550d5063e0359c, type: 3}
-      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5620401196900255136, guid: 03d8c3c2b4ca1dd489550d5063e0359c, type: 3}

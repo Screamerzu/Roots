@@ -20,7 +20,7 @@ public abstract class Attack : Ability
 	public Element element { get; protected set; }
 	
 	protected string DamageDealerPrefabName{ get; set; }
-	protected DamageDealer DamageDealerPrefab => Resources.Load<DamageDealer>(DamageDealerPrefabName);
+	protected GameObject DamageDealerPrefab => Resources.Load<GameObject>(DamageDealerPrefabName);
 	protected int Damage{ get; set; }
 
 }

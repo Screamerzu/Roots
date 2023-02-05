@@ -14,9 +14,9 @@ public class FireAttack : Attack
 
 	public override void StartCasting(Vector3 direction, IElementHolder instigator)
 	{
-		throw new System.NotImplementedException();
-
-		DamageDealer projectile = GameObject.Instantiate(DamageDealerPrefab, (instigator as MonoBehaviour).transform);
-		(projectile as DamageOnCollision).Deal(Damage).OfElement(Element.Fire).OnTrigger().ThenSelfDestruct();
+		GameObject projectile = GameObject.Instantiate(DamageDealerPrefab, (instigator as MonoBehaviour).transform.position, Quaternion.LookRotation(direction));
+		var damageDealer = projectile.GetComponent<DamageOnCollision>();
+		damageDealer.SetInstigator(instigator);
+		damageDealer.Deal(Damage).OfElement(Element.Fire).OnCollision().ThenSelfDestruct();
 	}
 }

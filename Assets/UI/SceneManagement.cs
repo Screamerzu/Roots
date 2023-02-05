@@ -29,7 +29,7 @@ public class SceneManagement : MonoBehaviour
     }
     public void Restart()
     {
-       SceneManager.LoadScene(1);
+       	SceneManager.LoadScene(1);
         pausePanel.SetActive(false);
         gameoverPanel.SetActive(false);
     }

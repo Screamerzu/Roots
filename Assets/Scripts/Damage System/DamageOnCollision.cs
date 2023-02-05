@@ -4,9 +4,10 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider))]
 public class DamageOnCollision : DamageDealer
 {
+	public UnityEvent onDamageDealt;
 	[SerializeField] int damageAmount;
 	[SerializeField] Element element;
-	[SerializeField] UnityEvent onDamageDealt;
+	[SerializeField] GameObject ImpactVFX;
 
 	public DamageOnCollision Deal(int damageAmount)
 	{
@@ -34,6 +35,15 @@ public class DamageOnCollision : DamageDealer
 		return this;
 	}
 
+	void SpawnImapctVFX()
+	{
+		if(!ImpactVFX)
+		{
+			return;
+		}
+
+		Instantiate(ImpactVFX, transform.position, transform.rotation);
+	}
 
 	void SelfDestruct()
 	{
@@ -59,7 +69,9 @@ public class DamageOnCollision : DamageDealer
 			{
 				return;
 			}
-
+			
+			gameObject.SetActive(false);
+			SpawnImapctVFX();
 			DealDamageToTarget(player, damageAmount, element);
 			onDamageDealt?.Invoke();
 		}
@@ -70,7 +82,9 @@ public class DamageOnCollision : DamageDealer
 				return;
 			}
 
-			DealDamageToTarget(player, damageAmount, element);
+			gameObject.SetActive(false);
+			SpawnImapctVFX();
+			DealDamageToTarget(enemy, damageAmount, element);
 			onDamageDealt?.Invoke();
 		}
 	}

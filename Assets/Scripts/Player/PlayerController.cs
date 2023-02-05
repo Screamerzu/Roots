@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
 	void UpdateRotation(Vector3 forward)
 	{
 		transform.rotation = Quaternion.LookRotation(forward, Vector3.up);
-		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y,0);
+		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 	}
 
 	void UseSkill(int skillIndex)

@@ -7,15 +7,15 @@ using UnityEngine;
 public class EnemyEditor : Editor
 {
 	Enemy enemy => target as Enemy;
-	int SelectedElementIndex => Array.IndexOf(Element.All, enemy.CurrentElementHeld);
+	SerializedProperty currentElementHeldIndex;
 	SerializedProperty health;
 	SerializedProperty maxHealth;
-
 
 	void OnEnable()
 	{
 		health = serializedObject.FindProperty("health");
 		maxHealth = serializedObject.FindProperty("maxHealth");
+		currentElementHeldIndex = serializedObject.FindProperty("currentElementHeldIndex");
 	}
 
 	public override void OnInspectorGUI()
@@ -27,7 +27,6 @@ public class EnemyEditor : Editor
 		GUI.enabled = false;
 		EditorGUILayout.PropertyField(health);
 		GUI.enabled = true;
-
 		serializedObject.ApplyModifiedProperties();
 	}
 
@@ -36,8 +35,7 @@ public class EnemyEditor : Editor
 		string[] elementsNames = Element.All.Select( (element) => element.ToString() ).ToArray();
 		EditorGUILayout.BeginHorizontal();
 		EditorGUILayout.LabelField("Element");
-		int selectedIndex = EditorGUILayout.Popup(SelectedElementIndex, elementsNames);
+		currentElementHeldIndex.intValue = EditorGUILayout.Popup(currentElementHeldIndex.intValue, elementsNames);
 		EditorGUILayout.EndHorizontal();
-		enemy.CurrentElementHeld = Element.All[selectedIndex];
 	}
 }

@@ -11,7 +11,9 @@ public class InputManager : MonoBehaviour
 	[SerializeField] KeyCode ability2Key = KeyCode.E;
 	[SerializeField] KeyCode ability3Key = KeyCode.Space;
 	[SerializeField] KeyCode ability4Key = KeyCode.F;
+	[SerializeField] KeyCode mouseSpanKey = KeyCode.Mouse1;
 
+	public float MouseScrollDelta => Input.mouseScrollDelta.y;
 	public Vector3 MoveValue => new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 	public Vector2 MouseMovementValue => new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 	public Vector3 MousePosition => Input.mousePosition;
@@ -29,6 +31,7 @@ public class InputManager : MonoBehaviour
 		}
 	}
 	public Vector3 LookDirection => (MousePositionLevelWithPlayer - transform.position).normalized;
+	public bool IsSpanKeyDown() => Input.GetKey(mouseSpanKey);
 
 	[Foldout("Actions")] public UnityEvent onShoot = new();
 	[Foldout("Actions")] public UnityEvent<int> onSkillUsed = new();

@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void UpdateMovement(Vector3 direction) => Motor.Move(direction * Time.deltaTime);
+	void UpdateMovement(Vector3 direction) => Motor.MoveRelativeToCamera(direction);
 
 	void UpdateRotation(Vector3 forward) => Motor.Rotate(forward);
 

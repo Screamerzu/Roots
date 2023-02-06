@@ -18,11 +18,7 @@ public class Player : MonoBehaviour, IDamageable, IElementHolder
 	public Element CurrentElementHeld { get => elementHeld; set => elementHeld = value; }
 	public UnityEvent<Element> OnElementHeldChanged { get => onElementHeldChanged; set => onElementHeldChanged = value; }
 
-	void Awake()
-	{
-		Heal();
-		OnPlayerDied.AddListener(() => RestartTheGame());
-	}
+	void Awake() => Heal();
 
 	public void Damage(int value, Element element)
 	{
@@ -42,8 +38,4 @@ public class Player : MonoBehaviour, IDamageable, IElementHolder
 
 	[Button]
 	void ShowElementHeld() => Debug.Log(CurrentElementHeld);
-
-	void RestartTheGame() {
-		SceneManager.LoadScene(1);
-	}
 }

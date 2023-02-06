@@ -16,19 +16,9 @@ public class AbsorbedElement : MonoBehaviour
 	public void GetAbsorbed(Element element)
 	{
 		this.element = element;
-		StartCoroutine(RegenRoutine());
+		(PlayerController.Instance.Player as IElementHolder).Regen(element);
+		Destroy(gameObject, 3);
 	}
 	
-	void Update()
-	{
-		target.transform.position = PlayerController.Instance.transform.position;
-	}
-
-	IEnumerator RegenRoutine()
-	{
-		yield return new WaitForSeconds(1);
-		(PlayerController.Instance.Player as IElementHolder).Regen(element);
-		yield return new WaitForSeconds(3);
-		Destroy(gameObject);
-	}
+	void Update() => target.transform.position = PlayerController.Instance.transform.position;
 }

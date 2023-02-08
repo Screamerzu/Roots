@@ -62,9 +62,12 @@ public class AIController : MonoBehaviour
 		}
 	}
 
-	[ContextMenu("Add MoveAction")]
-	void AddMoveAction() => possibleActions.Add(new MoveAction());
-
 	[ContextMenu("Add AbilityAction")]
 	void AddAbilityAction() => possibleActions.Add(new AbilityAction());
+
+	[ContextMenu("Add FollowPlayerAction")]
+	void AddFollowPlayerAction() => possibleActions.Add(new FollowPlayerAction());
+
+	[ContextMenu("Add RandomMovementAction")]
+	void AddRandomMovementAction() => possibleActions.Add(new RandomMovementAction());
 }

@@ -117,8 +117,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleActions:
-  - rid: 4810818657910521867
-  - rid: 4810818657910521868
+  - rid: 4810818766718894082
+  - rid: 4810818766718894083
+  - rid: 4810818766718894084
   currentAction:
     rid: -2
   abilityCaster:
@@ -128,14 +129,26 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 4810818657910521867
-      type: {class: MoveAction, ns: , asm: Assembly-CSharp}
-      data:
-        priority: 1000
-    - rid: 4810818657910521868
+    - rid: 4810818766718894082
       type: {class: AbilityAction, ns: , asm: Assembly-CSharp}
       data:
+        name: AbilityAction
         priority: 50
+    - rid: 4810818766718894083
+      type: {class: FollowPlayerAction, ns: , asm: Assembly-CSharp}
+      data:
+        name: FollowPlayerAction
+        priority: 1000
+        maxFollowTime: Infinity
+        tolerance: 1
+    - rid: 4810818766718894084
+      type: {class: RandomMovementAction, ns: , asm: Assembly-CSharp}
+      data:
+        name: RandomMovementAction
+        priority: 1000
+        maxFollowTime: Infinity
+        tolerance: 1
+        movementRadius: 3
 --- !u!114 &2521634863520262979
 MonoBehaviour:
   m_ObjectHideFlags: 0

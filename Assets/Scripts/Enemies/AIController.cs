@@ -3,22 +3,22 @@ using UnityEngine;
 using UnityEngine.AI;
 using NaughtyAttributes;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Motor))]
 [RequireComponent(typeof(Enemy))]
 public class AIController : MonoBehaviour
 {
 	[SerializeReference]List<AIAction> possibleActions = new();
 	[SerializeReference][ReadOnly] AIAction currentAction;
 	[SerializeField][ReadOnly] AbilityCaster abilityCaster = new();
+	public Motor Motor  { get; private set; }
 	public Enemy Enemy { get; private set; }
-	public NavMeshAgent NavMeshAgent  { get; private set; }
 
 	public AbilityCaster AbilityCaster => abilityCaster;
 
 	void Awake()
 	{
 		Enemy = GetComponent<Enemy>();
-		NavMeshAgent = GetComponent<NavMeshAgent>();
+		Motor = GetComponent<Motor>();
 		AbilityCaster.WithAttacks(Attack.ElementAttackMap);
 
 		ChooseNextAction();

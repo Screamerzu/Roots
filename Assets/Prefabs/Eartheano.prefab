@@ -132,8 +132,6 @@ MonoBehaviour:
       type: {class: MoveAction, ns: , asm: Assembly-CSharp}
       data:
         priority: 1000
-        speed: 2
-        followDistance: 1.5
     - rid: 4810818657910521864
       type: {class: AbilityAction, ns: , asm: Assembly-CSharp}
       data:

@@ -136,8 +136,6 @@ MonoBehaviour:
       type: {class: MoveAction, ns: , asm: Assembly-CSharp}
       data:
         priority: 1000
-        speed: 3
-        followDistance: 3
 --- !u!114 &3148963887194342500
 MonoBehaviour:
   m_ObjectHideFlags: 0
